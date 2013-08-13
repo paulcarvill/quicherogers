@@ -1,0 +1,68 @@
+<html>
+<head>
+	<title>Quiche Rogers</title>
+	<link rel="stylesheet" href="assets/css/style.css" />
+	<meta name="viewport" content="width=320px, user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+</head>
+
+<body>
+
+	<div id="page">
+
+		<h1>Quiche Rogers</h1>
+
+		<div class="quiche-outer">				
+			<div class="quiche-inner">
+				
+				<div class="keith">
+          <p>i am keith</p>
+				</div>
+				
+				<div class="quiche">
+          <p>i am quiche</p>
+				</div>	
+
+			</div>
+		</div>
+
+	</div>
+
+	<script>
+	var page = document.getElementById('page'),
+    ua = navigator.userAgent,
+    iphone = ~ua.indexOf('iPhone') || ~ua.indexOf('iPod'),
+    ipad = ~ua.indexOf('iPad'),
+    ios = iphone || ipad,
+    
+    fullscreen = window.navigator.standalone,
+    android = ~ua.indexOf('Android'),
+    lastWidth = 0;
+
+	if (android) {
+  		window.onscroll = function() {
+    		page.style.height = window.innerHeight + 'px'
+  		} 
+	}
+
+	var setupScroll = window.onload = function() {
+  		if (ios) {
+		    var height = document.documentElement.clientHeight;
+		    if (iphone && !fullscreen) height += 60;
+		    page.style.height = height + 'px';
+		} else if (android) {
+			page.style.height = (window.innerHeight + 56) + 'px'
+		}
+  		setTimeout(scrollTo, 0, 0, 1);
+	};
+
+	(window.onresize = function() {
+  		var pageWidth = page.offsetWidth;
+		 if (lastWidth == pageWidth) return;
+		 lastWidth = pageWidth;
+		 setupScroll();
+	})();
+	</script>
+
+</body>
+</html>
