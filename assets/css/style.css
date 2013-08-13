@@ -32,7 +32,7 @@ h1 {
 	margin: 0 auto;
 
   -webkit-animation-name:             swirl; 
-  -webkit-animation-duration:         10s; 
+  -webkit-animation-duration:         20s; 
   -webkit-animation-iteration-count:  infinite;
   -webkit-animation-timing-function:  linear;
 
