@@ -7,7 +7,6 @@
 </head>
 
 <body>
-
 	<div id="page">
 
 		<h1>Quiche Rogers</h1>
@@ -19,7 +18,7 @@
           <p>i am keith</p>
 				</div>
 				
-				<div class="quiche">
+				<div class="quiche" id="quiche">
           <p>i am quiche</p>
 				</div>	
 
@@ -29,7 +28,7 @@
 	</div>
 
 	<div style="height: 70px; width:100%; position: fixed; bottom: 0;">
-		<div id="trackinfo">#nowplaying: <a href="https://soundcloud.com/wildcat-wildcat/mr-quiche">Mr. Quiche</a> by <a href="https://soundcloud.com/wildcat-wildcat">Wildcat! Wildcat!</a></div>
+		<div id="trackinfo"><p id="clickquiche">click the quiche!</p><p id="nowplaying">#nowplaying: <a id="playit" href="https://soundcloud.com/wildcat-wildcat/mr-quiche">Mr. Quiche</a> by <a href="https://soundcloud.com/wildcat-wildcat">Wildcat! Wildcat!</a></p></div>
 		<div id="track" style="width: 100%; height: 50px; position: absolute; left: 0; top: 20px;"></div>
 	</div>
 
@@ -77,7 +76,16 @@
 	    client_id: "d1cd63a3738d56d1626b58d26cb41069"
 	  });
 
+	  var q = document.getElementById('quiche');
+	  
+	  q.addEventListener('click', function(){
+	  	window.exampleStream.play();
+	  	document.getElementById('nowplaying').style.display="block";
+	  	document.getElementById('clickquiche').style.display="none"
+	  });
+
 	  SC.get("/tracks/29394137", function(track){
+
 		  var waveform = new Waveform({
 		    container: document.getElementById("track")
 		  });
@@ -91,9 +99,9 @@
 		  
 		  SC.stream(track.uri, streamOptions, function(stream){
 		    window.exampleStream = stream;
-
 		    window.exampleStream.play();
 		  });
+
 	  });
 
 

@@ -265,3 +265,11 @@ a:hover {
   color: #333
 }
 
+#nowplaying {
+  display: none;
+}
+
+#trackinfo p {
+  margin: 0;
+  padding: 0;
+}
