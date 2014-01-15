@@ -2,7 +2,7 @@
 <head>
 	<title>Quiche Rogers</title>
 	<link rel="stylesheet" href="assets/css/style.css" />
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 </head>
 
@@ -27,67 +27,40 @@
 
 	</div>
 
-	<div style="height: 70px; width:100%; position: fixed; bottom: 0;">
+	<div style="height: 70px; width:100%; position: fixed; bottom: 5px;">
 		<div id="trackinfo"><p id="clickquiche">click the quiche!</p><p id="nowplaying">#nowplaying: <a id="playit" href="https://soundcloud.com/wildcat-wildcat/mr-quiche">Mr. Quiche</a> by <a href="https://soundcloud.com/wildcat-wildcat">Wildcat! Wildcat!</a></p></div>
 		<div id="track" style="width: 100%; height: 50px; position: absolute; left: 0; top: 20px;"></div>
 	</div>
-
-	<script>
-	var page = document.getElementById('page'),
-    ua = navigator.userAgent,
-    iphone = ~ua.indexOf('iPhone') || ~ua.indexOf('iPod'),
-    ipad = ~ua.indexOf('iPad'),
-    ios = iphone || ipad,
-    
-    fullscreen = window.navigator.standalone,
-    android = ~ua.indexOf('Android'),
-    lastWidth = 0;
-
-	if (android) {
-  		window.onscroll = function() {
-    		page.style.height = window.innerHeight + 'px'
-  		} 
-	}
-
-	var setupScroll = window.onload = function() {
-  		if (ios) {
-		    var height = document.documentElement.clientHeight;
-		    if (iphone && !fullscreen) height += 60;
-		    page.style.height = height + 'px';
-		} else if (android) {
-			page.style.height = (window.innerHeight + 56) + 'px'
-		}
-  		setTimeout(scrollTo, 0, 0, 1);
-	};
-
-	(window.onresize = function() {
-  		var pageWidth = page.offsetWidth;
-		 if (lastWidth == pageWidth) return;
-		 lastWidth = pageWidth;
-		 setupScroll();
-	})();
-	</script>
 
 	<script src="//connect.soundcloud.com/sdk.js"></script>
 	<script src="assets/js/waveform.js"></script>
 
 	<script>
+	  var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
+	  var msg = document.getElementById('clickquiche');
+	  var now = document.getElementById('nowplaying');
+	  var q = document.getElementById('quiche');
+
+	  if (iOS) {
+	  	msg.style.display="block";
+	  	q.addEventListener('click', function(){
+	  		window.exampleStream.play();
+	  		now.style.display="block";
+	  		msg.style.display="none"
+	  	});
+	  } else {
+	  	now.style.display="block";
+	  }
+
 	  SC.initialize({
 	    client_id: "d1cd63a3738d56d1626b58d26cb41069"
-	  });
-
-	  var q = document.getElementById('quiche');
-	  
-	  q.addEventListener('click', function(){
-	  	window.exampleStream.play();
-	  	document.getElementById('nowplaying').style.display="block";
-	  	document.getElementById('clickquiche').style.display="none"
 	  });
 
 	  SC.get("/tracks/29394137", function(track){
 
 		  var waveform = new Waveform({
-		    container: document.getElementById("track")
+		    container: document.getElementById("track"),
+		    innerColor: "#ccc"
 		  });
 
 		  waveform.dataFromSoundCloudTrack(track);
