@@ -165,12 +165,12 @@ h1 {
 }
 
 .keith { 
-  background-image: url(assets/images/keith_400px.jpg);
+  background-image: url(http://paulcarvill.github.io/quicherogers/assets/images/keith_400px.jpg);
   background-size: 100% 100%;
 }
 
 .quiche { 
-  background-image: url(assets/images/quiche_400px_lossy.gif);
+  background-image: url(http://paulcarvill.github.io/quicherogers/assets/images/quiche_400px_lossy.gif);
   background-size: 100% 100%;
 }
 
